@@ -1,0 +1,2 @@
+gei_generator.ipynd is to generate Gait Energy Images for each subfolder in the directory according to a sequence of silhouettes in each subfolder.
+gei generation might fail because of center of mass calculation process. Applying add_border.ipynd may solve the problem.
