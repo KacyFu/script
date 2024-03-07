@@ -1,0 +1,35 @@
+# add border for unsuccessful image generated
+import os
+from PIL import Image
+
+def add_black_frame(folder_path, frame_width):
+    # Iterate through all files in the folder
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            if file.endswith('.png'):
+                # Open the image
+                image_path = os.path.join(root, file)
+                image = Image.open(image_path)
+
+                # Calculate the new image size
+                new_width = image.width + 2 * frame_width
+                new_height = image.height + 2 * frame_width
+
+                # Create a new blank image with the black frame
+                new_image = Image.new('RGB', (new_width, new_height), color='black')
+
+                # Paste the original image onto the new image with an offset for the frame
+                offset = (frame_width, frame_width)
+                new_image.paste(image, offset)
+
+                # Save the new image with the black frame
+                new_image.save(image_path)
+
+                print(f"Added black frame to: {image_path}")
+
+# Specify the folder path and frame width
+folder_path = 'C:/Users/12524/Desktop/OnlineDataset/Moderate-add/Moderate-Translated/undo'
+frame_width = 50
+
+# Call the function to add the black frame
+add_black_frame(folder_path, frame_width)
